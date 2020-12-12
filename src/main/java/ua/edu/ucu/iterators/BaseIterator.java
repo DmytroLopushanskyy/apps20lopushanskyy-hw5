@@ -1,5 +1,6 @@
 package ua.edu.ucu.iterators;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class BaseIterator implements RenewableIterator {
     private ArrayList<Integer> intList;
@@ -19,6 +20,9 @@ public class BaseIterator implements RenewableIterator {
 
     @Override
     public Integer next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
         return intList.get(currentIndex++);
     }
 
