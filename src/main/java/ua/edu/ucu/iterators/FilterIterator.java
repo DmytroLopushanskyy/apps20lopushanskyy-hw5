@@ -39,7 +39,8 @@ public class FilterIterator implements RenewableIterator {
 
     @Override
     public void restart() {
-        nextElement = null;
         previousIterator.restart();
+        nextElement = null;
+        next();
     }
 }

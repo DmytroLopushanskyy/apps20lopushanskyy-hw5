@@ -29,6 +29,31 @@ public class StreamAppTest {
     }
 
     @Test
+    public void testRestart() {
+        System.out.println("testRestart");
+        int expResult = 42;
+        int res = intStream
+                .filter(x -> x > 0) // 1, 2, 3
+                .map(x -> x * x) // 1, 4, 9
+                .flatMap(x -> AsIntStream.of(x - 1, x, x + 1)) // 0, 1, 2, 3, 4, 5, 8, 9, 10
+                .sum(); // 42
+        assertEquals(expResult, res);
+    }
+
+    @Test
+    public void testEmptyMid() {
+        System.out.println("empty mid method");
+        IntStream stream = AsIntStream.of(1, 2, 3);
+        int expResult = 0;
+        long res = stream
+                .filter(x -> x < 0) // empty
+                .map(x -> x * x) // empty
+                .flatMap(x -> AsIntStream.of(x - 1, x, x + 1)) // empty
+                .count(); // 0
+        assertEquals(expResult, res);
+    }
+
+    @Test
     public void testCount() {
         System.out.println("sum");
         int expResult = 5;

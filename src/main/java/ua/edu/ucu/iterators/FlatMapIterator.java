@@ -38,7 +38,11 @@ public class FlatMapIterator implements RenewableIterator {
     @Override
     public void restart() {
         previousIterator.restart();
-        this.curStreamIterator = new BaseIterator(comparator
-                .applyAsIntStream(previousIterator.next()).toArray());
+        if (!previousIterator.hasNext()) {
+            this.curStreamIterator = new BaseIterator();
+        } else {
+            this.curStreamIterator = new BaseIterator(comparator
+                    .applyAsIntStream(previousIterator.next()).toArray());
+        }
     }
 }

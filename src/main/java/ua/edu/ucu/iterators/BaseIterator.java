@@ -15,7 +15,10 @@ public class BaseIterator implements RenewableIterator {
 
     @Override
     public boolean hasNext() {
-        return currentIndex <= intList.size() - 1;
+        if (currentIndex > intList.size() - 1) {
+            return false;
+        }
+        return true;
     }
 
     @Override

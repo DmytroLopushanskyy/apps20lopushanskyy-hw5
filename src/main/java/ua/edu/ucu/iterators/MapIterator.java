@@ -2,6 +2,8 @@ package ua.edu.ucu.iterators;
 
 import ua.edu.ucu.function.IntUnaryOperator;
 
+import java.util.NoSuchElementException;
+
 
 public class MapIterator implements RenewableIterator {
     private RenewableIterator previousIterator;
@@ -19,6 +21,9 @@ public class MapIterator implements RenewableIterator {
 
     @Override
     public Integer next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
         return comparator.apply(previousIterator.next());
     }
 
