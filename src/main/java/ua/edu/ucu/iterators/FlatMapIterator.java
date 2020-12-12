@@ -8,7 +8,8 @@ public class FlatMapIterator implements RenewableIterator {
     private RenewableIterator curStreamIterator;
     private IntToIntStreamFunction comparator;
 
-    public FlatMapIterator(RenewableIterator prev, IntToIntStreamFunction comp) {
+    public FlatMapIterator(RenewableIterator prev,
+                           IntToIntStreamFunction comp) {
         this.previousIterator = prev;
         this.comparator = comp;
 

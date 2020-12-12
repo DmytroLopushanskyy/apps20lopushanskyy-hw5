@@ -21,7 +21,6 @@ public class AsIntStream implements IntStream {
         int sum = this.sum();
         iterator.restart();
         int count = Math.toIntExact(this.count());
-        System.out.println(sum + " " + count);
         return sum / (double) count;
     }
 
